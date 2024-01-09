@@ -1,4 +1,4 @@
 {
     "minecraft_server_location": "",
-    "running_port": 8080
+    "port": 8080
 }
