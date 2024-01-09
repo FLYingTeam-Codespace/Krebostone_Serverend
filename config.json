@@ -1,4 +1,8 @@
 {
-    "minecraft_server_location": "",
-    "port": 8080
+    "minecraft_server_location": "C:\\Users\\ilove\\Documents\\testMCServer",
+    "port": 8080,
+    "server": {
+        "minMem": "3G",
+        "maxMem": "3G"
+    }
 }

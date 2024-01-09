@@ -12,7 +12,7 @@ __config = config.Config()
 app = Flask(__name__)
 
 # Preload check===
-preload.preloadCheck()
+# preload.preloadCheck()
 if checker.checkServicesRequirements() == False:
     __log.printerror("Failed to pass preload check, exiting...")
     sys.exit(1)

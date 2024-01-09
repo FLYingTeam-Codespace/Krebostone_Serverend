@@ -18,7 +18,7 @@ class Logger:
         self.__printOut(message, self.info)
         
     def printwarning(self, message, color=colorama.Fore.YELLOW):
-        self.__printOut(message, self.warning)
+        self.__printOut(message, self.warning, color)
         
     def printerror(self, message, color=colorama.Fore.RED):
-        self.__printOut(message, self.error)
+        self.__printOut(message, self.error, color)

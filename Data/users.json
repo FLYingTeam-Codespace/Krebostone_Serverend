@@ -1,1 +1,14 @@
-{"admin": {"password": "admin", "enabled": true, "autoWhitelist": false}, "kimsse": {"password": "default", "enabled": true, "autoWhitelist": true}}
+{
+    "admin": {
+        "password": "admin",
+        "enabled": true,
+        "autoWhitelist": false,
+        "admin": true
+    },
+    "kimsse": {
+        "password": "default",
+        "enabled": true,
+        "autoWhitelist": true,
+        "admin": false
+    }
+}
