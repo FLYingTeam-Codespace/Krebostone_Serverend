@@ -14,8 +14,8 @@ class Logger:
     def __printOut(self, message, level, color=colorama.Fore.WHITE):
         print(f"{color}[{datetime.datetime.today()}][{level}][{self.departmentName}] : {message}")
         
-    def printinfo(self, message):
-        self.__printOut(message, self.info)
+    def printinfo(self, message, color=colorama.Fore.WHITE):
+        self.__printOut(message, self.info, color)
         
     def printwarning(self, message, color=colorama.Fore.YELLOW):
         self.__printOut(message, self.warning, color)

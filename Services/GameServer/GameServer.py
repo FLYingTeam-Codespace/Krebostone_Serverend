@@ -4,12 +4,14 @@ import logger
 import config
 import subprocess
 import threading
+import colorama
 
 __log = logger.Logger("MCServer|CORE", True)
 __config = config.Config()
 minecraftServerProcess:subprocess.Popen = None
 minecraftServerThread:threading.Thread = None
 serverIsRunning = False
+serverIsBooting = False
 
 preloadCheckPoints = {
     "minecraft_server": (False, os.path.join(__config.getConfigFileContent("minecraft_server_location"), "server.jar")),
@@ -17,6 +19,16 @@ preloadCheckPoints = {
     "minecraft_mods_folder": (False, os.path.join(__config.getConfigFileContent("minecraft_server_location"), "mods")),
     "minecraft_mods_config_folder": (False, os.path.join(__config.getConfigFileContent("minecraft_server_location"), "config")),
 }
+
+def getServerStatus():
+    global serverIsRunning
+    global serverIsBooting
+    if serverIsBooting == True:
+        return "booting"
+    elif serverIsRunning == True:
+        return "running"
+    else:
+        return "stopped"
 
 def preloadCheck():
     __log.printinfo("Checking minecraft server and its libraries...")
@@ -43,9 +55,13 @@ def preloadCheck():
 def keepAlive():
     global minecraftServerProcess
     global serverIsRunning
+    global serverIsBooting
     output = minecraftServerProcess.stdout.readline()
     while output:
-        __log.printinfo(output.strip())
+        if output.strip().find('For help, type "help"'.encode()) != -1:
+            # End the mark of server booting
+            serverIsBooting = False
+        __log.printinfo(output.strip(), color=colorama.Fore.CYAN)
         output = minecraftServerProcess.stdout.readline()
     serverIsRunning = False
 
@@ -53,6 +69,7 @@ def startMinecraftServer():
     global minecraftServerProcess
     global serverIsRunning
     global minecraftServerThread
+    global serverIsBooting
     if serverIsRunning == True:
         __log.printerror("Minecraft server is already running.")
         return False
@@ -64,7 +81,9 @@ def startMinecraftServer():
         __log.printinfo("Starting minecraft server...")
         minecraftServerProcess = subprocess.Popen(["java", "-Xms"+__config.getConfigFileContent("server")["minMem"], "-Xmx"+__config.getConfigFileContent("server")["minMem"], "-jar", preloadCheckPoints["minecraft_server"][1], "nogui"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=__config.getConfigFileContent("minecraft_server_location"))
         minecraftServerThread = threading.Thread(target=keepAlive) # Keep the server running in the background
+        minecraftServerThread.start() # Start the thread
         serverIsRunning = True
+        serverIsBooting = True
         return True
     except Exception as e:
         __log.printerror(f"Failed to start minecraft server, error: {e}")

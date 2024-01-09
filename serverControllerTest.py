@@ -17,14 +17,10 @@ if __name__ == "__main__":
     GameServer.preloadCheck()
     GameServer.startMinecraftServer()
     
-    # Create a thread to keep the server alive
-    t = threading.Thread(target=keppAndPrintServer)
-    t.start()
-    
-    while True:
-        command = input()
-        GameServer.minecraftServerProcess.stdin.write(f"{command}\n".encode())
-        GameServer.minecraftServerProcess.stdin.flush()
+    # while True:
+    #     command = input()
+    #     GameServer.minecraftServerProcess.stdin.write(f"{command}\n".encode())
+    #     GameServer.minecraftServerProcess.stdin.flush()
 
 
         
