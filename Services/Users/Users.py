@@ -16,17 +16,42 @@ def login(username, password):
     with open(USER_DB_FILE, 'r') as db:
         dbContent = json.load(db)
         if username in dbContent.keys():
-            if dbContent[username]["password"] == password and dbContent[username]["enabled"]:
+            if (dbContent[username]["password"] == password or dbContent[username]["password"] == "default") and dbContent[username]["enabled"]:
                 token = Token.generateToken(username, password)
-                return (True, token)
+                returnValue = (True, token, False)
+                if dbContent[username]["password"] == "default":
+                    returnValue[2] = True
+                return returnValue
             else:
-                return (False)
+                return (False, None)
         else:
-            return (False)
+            return (False, None)
         
 def loginWithToken(token):
     if Token.verifyToken(token):
         return True
     else:
         return False
+    pass
+
+def changePassword(username, newPassword):
+    with open(USER_DB_FILE, 'r') as db:
+        dbContent = json.load(db)
+        if username in dbContent.keys():
+            dbContent[username]["password"] = newPassword
+            with open(USER_DB_FILE, 'w') as db:
+                json.dump(dbContent, db)
+            # Generate new token
+            token = Token.generateToken(username, newPassword)
+            return (True, token)
+        else:
+            return (False, None)
+        
+def getUserInfo(username):
+    with open(USER_DB_FILE, 'r') as db:
+        dbContent = json.load(db)
+        if username in dbContent.keys():
+            return dbContent[username]
+        else:
+            return None
     pass

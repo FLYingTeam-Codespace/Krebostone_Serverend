@@ -23,3 +23,10 @@ def verifyToken(token):
         return True
     except:
         return False
+    
+def parseToken(token):
+    try:
+        return jwt.decode(token, SECRET, algorithms=["HS256"])
+    except:
+        return None
+    pass

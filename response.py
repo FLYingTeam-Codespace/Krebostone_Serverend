@@ -8,7 +8,7 @@ NOT_FOUND = 4040
 UNAUTHORIZED = 4010
 FORBIDDEN = 4030
 
-def sendResponse(statusCode, message, data=None):
+def sendResponse(statusCode, message="", data=None):
     return jsonify({
         "statusCode": statusCode,
         "message": message,
