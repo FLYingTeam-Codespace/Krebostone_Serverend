@@ -21,3 +21,13 @@ def checkServicesRequirements():
             continue
     __log.printinfo("All services passed preload check.")
     return True
+
+def autoRegisterRouters(app):
+    routers = os.listdir(os.path.join(os.getcwd(), "Routers"))
+    __log.printinfo(f"Found {len(routers)} routers, auto registering...")
+    for i in routers:
+        routerModule = importlib.import_module(f"Routers.{i}.{i}")
+        app.register_blueprint(routerModule.router)
+        __log.printinfo(f"Router <{i}> registered.")
+    __log.printinfo("All routers registered.")
+    return app

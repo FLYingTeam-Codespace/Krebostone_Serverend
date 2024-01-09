@@ -1,4 +1,6 @@
 {
-    "name": "admin",
-    "paddword": "123456"
+    "admin": {
+        "password": "admin",
+        "enabled": true
+    }
 }

@@ -16,6 +16,7 @@ preload.preloadCheck()
 if checker.checkServicesRequirements() == False:
     __log.printerror("Failed to pass preload check, exiting...")
     sys.exit(1)
+app = checker.autoRegisterRouters(app)
 # ================
 
 # Routers =====
