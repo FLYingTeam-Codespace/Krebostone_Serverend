@@ -55,3 +55,15 @@ def getUserInfo(username):
         else:
             return None
     pass
+
+def changeNickname(username, newNickname):
+    with open(USER_DB_FILE, 'r') as db:
+        dbContent = json.load(db)
+        if username in dbContent.keys():
+            dbContent[username]["nickname"] = newNickname
+            with open(USER_DB_FILE, 'w') as db:
+                json.dump(dbContent, db)
+            return True
+        else:
+            return False
+    pass

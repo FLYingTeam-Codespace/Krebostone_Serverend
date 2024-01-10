@@ -5,6 +5,7 @@ import config
 import subprocess
 import threading
 import colorama
+import json
 
 __log = logger.Logger("MCServer|CORE", True)
 __config = config.Config()
@@ -109,3 +110,22 @@ def issueCommand(command):
     minecraftServerProcess.stdin.write(f"{command}\n".encode())
     minecraftServerProcess.stdin.flush()
     return True
+
+# Whitelist checker
+def checkWhitelist(username):
+    # Read the whitelist.json file
+    with open(os.path.join(__config.getConfigFileContent("minecraft_server_location"), "whitelist.json"), "r") as f:
+        whitelist = json.load(f)
+        for i in whitelist:
+            if i["name"] == username:
+                return True
+    return False
+    pass
+
+def addWhitelist(username):
+    return issueCommand(f"whitelist add {username}")
+    pass
+
+def removeWhitelist(username):
+    return issueCommand(f"whitelist remove {username}")
+    pass
