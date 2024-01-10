@@ -101,7 +101,8 @@ def stopMinecraftServer():
 def issueCommand(command):
     global minecraftServerProcess
     global serverIsRunning
-    if serverIsRunning == False:
+    global serverIsBooting
+    if serverIsRunning == False or serverIsBooting == True:
         __log.printerror("Minecraft server is not running.")
         return False
     __log.printinfo(f"Issuing command: {command}")
