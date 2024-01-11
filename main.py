@@ -6,6 +6,7 @@ import response as resp
 import checker
 import sys
 from flask import Flask
+from flask_cors import CORS
 
 __log = logger.Logger("main", True)
 __config = config.Config()
@@ -17,6 +18,7 @@ if checker.checkServicesRequirements() == False:
     __log.printerror("Failed to pass preload check, exiting...")
     sys.exit(1)
 app = checker.autoRegisterRouters(app)
+CORS(app) # Add CORS support
 # ================
 
 # Routers =====
