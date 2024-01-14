@@ -1,1 +1,40 @@
-{"admin": {"password": "admin", "enabled": true, "autoWhitelist": false, "admin": true, "nickname": "kimsse"}, "kimsse": {"password": "default", "enabled": true, "autoWhitelist": true, "admin": false, "nickname": "kimsse"}}
+{
+    "admin": {
+        "password": "admin",
+        "enabled": true,
+        "autoWhitelist": false,
+        "admin": true,
+        "nickname": "kimsse",
+        "access": {
+            "start": true,
+            "stop": true,
+            "restart": true,
+            "commands": true,
+            "backup": true,
+            "invite": true,
+            "uploadMods": true,
+            "uploadFiles": true,
+            "downloadMods": true,
+            "downloadFiles": true
+        }
+    },
+    "kimsse": {
+        "password": "default",
+        "enabled": true,
+        "autoWhitelist": true,
+        "admin": false,
+        "nickname": "kimsse",
+        "access": {
+            "start": true,
+            "stop": false,
+            "restart": false,
+            "commands": false,
+            "backup": true,
+            "invite": true,
+            "uploadMods": true,
+            "uploadFiles": false,
+            "downloadMods": true,
+            "downloadFiles": true
+        }
+    }
+}
