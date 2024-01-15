@@ -1,5 +1,6 @@
 {
     "admin": {
+        "id": "d244a43d-5b94-4fde-9821-15f3fbd47d35",
         "password": "admin",
         "enabled": true,
         "autoWhitelist": false,
@@ -15,10 +16,13 @@
             "uploadMods": true,
             "uploadFiles": true,
             "downloadMods": true,
-            "downloadFiles": true
+            "downloadFiles": true,
+            "addBulletin": true,
+            "removeBulletin": true
         }
     },
     "kimsse": {
+        "id": "e85744cb-61fc-4ddf-b7c5-5599d6f74f4c",
         "password": "default",
         "enabled": true,
         "autoWhitelist": true,
@@ -34,7 +38,9 @@
             "uploadMods": true,
             "uploadFiles": false,
             "downloadMods": true,
-            "downloadFiles": true
+            "downloadFiles": true,
+            "addBulletin": false,
+            "removeBulletin": false
         }
     }
 }

@@ -17,3 +17,4 @@ If you have any question or met any issues, please either open an issue, or dire
 
 The whole project is running and powered by LOVE!
 
+Krebostone Client API References: https://apifox.com/apidoc/shared-68def2ae-6969-4163-99b8-cd31fbc240f4

@@ -7,10 +7,11 @@ SECRET = "mysteriousSecret;)"
 def preloadCheck():
     return True
 
-def generateToken(username, password):
+def generateToken(username, password, uuid):
     payload = {
         "username": username,
         "password": password,
+        "id": uuid,
         "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
     }
     

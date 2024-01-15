@@ -66,3 +66,15 @@ def changeNickname():
     else:
         return resp.sendResponse(resp.FORBIDDEN, "Invalid username")
     pass
+
+@router.route('/getUserInfoWithID', methods=['POST'])
+def getUserInfoWithID():
+    data = Token.parseToken(request.headers.get('Authorization'))
+    if data == None:
+        return resp.sendResponse(resp.FORBIDDEN, "Invalid token")
+    userID = data["id"]
+    userInfo = Users.getUserInfoWithID(userID)
+    if userInfo != None:
+        return resp.sendResponse(resp.SUCCESS, data=userInfo)
+    else:
+        return resp.sendResponse(resp.FORBIDDEN, "Invalid id")

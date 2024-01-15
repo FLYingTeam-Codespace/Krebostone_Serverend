@@ -15,6 +15,8 @@ ACCESSES_KEYS = {
     "uploadFiles": "uploadFiles",
     "downloadMods": "downloadMods",
     "downloadFiles": "downloadFiles",
+    "addBulletin": "addBulletin",
+    "removeBulletin": "removeBulletin",
 }
 
 def preloadCheck():
@@ -42,7 +44,7 @@ def generateAccesses(username):
     
 def getAccess(username, key):
     if checkInKeys(key):
-        with open(os.path.join("Services", "users.json"), "r") as f:
+        with open(os.path.join("Data", "users.json"), "r") as f:
             data = json.load(f)
             if username in data.keys():
                 if key in data[username]["access"].keys():

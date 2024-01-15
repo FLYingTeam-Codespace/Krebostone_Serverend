@@ -17,7 +17,7 @@ def login(username, password):
         dbContent = json.load(db)
         if username in dbContent.keys():
             if (dbContent[username]["password"] == password or dbContent[username]["password"] == "default") and dbContent[username]["enabled"]:
-                token = Token.generateToken(username, password)
+                token = Token.generateToken(username, password, dbContent[username]["id"])
                 returnValue = (True, token, False)
                 if dbContent[username]["password"] == "default":
                     returnValue[2] = True
@@ -51,6 +51,7 @@ def getUserInfo(username):
     with open(USER_DB_FILE, 'r') as db:
         dbContent = json.load(db)
         if username in dbContent.keys():
+            del dbContent[username]["password"]
             return dbContent[username]
         else:
             return None
@@ -66,4 +67,14 @@ def changeNickname(username, newNickname):
             return True
         else:
             return False
+    pass
+
+def getUserInfoWithID(uuid):
+    with open(USER_DB_FILE, 'r') as db:
+        dbContent = json.load(db)
+        for i in dbContent.keys():
+            if dbContent[i]["id"] == uuid:
+                del dbContent[i]["password"]
+                return dbContent[i]
+        return None
     pass
