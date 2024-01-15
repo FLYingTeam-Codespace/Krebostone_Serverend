@@ -17,6 +17,9 @@ ACCESSES_KEYS = {
     "downloadFiles": "downloadFiles",
 }
 
+def preloadCheck():
+    return True
+
 def checkInKeys(key):
     if key in ACCESSES_KEYS.keys():
         return True
