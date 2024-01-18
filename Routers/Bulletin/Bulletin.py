@@ -9,6 +9,7 @@ router = Blueprint('bulletin', __name__, url_prefix='/bulletin')
 @router.route('/add', methods=['POST'])
 def addBulletin():
     token = request.headers.get('Authorization')
+    print(token)
     data = Token.parseToken(token)
     if data == None:
         return resp.sendResponse(resp.FORBIDDEN, "Invalid token")
