@@ -1,2 +1,2 @@
-./DevEnv/*
-./DevEnv
+/DevEnv/*
+**/__pycache__/
