@@ -20,7 +20,7 @@ def login(username, password):
                 token = Token.generateToken(username, password, dbContent[username]["id"])
                 returnValue = (True, token, False)
                 if dbContent[username]["password"] == "default":
-                    returnValue[2] = True
+                    returnValue = (True, token, True)
                 return returnValue
             else:
                 return (False, None)
