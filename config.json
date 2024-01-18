@@ -3,6 +3,11 @@
     "port": 8808,
     "server": {
         "minMem": "3G",
-        "maxMem": "3G"
+        "maxMem": "3G",
+        "address": "",
+        "port": 25565,
+        "name": "FLTM Creative Server",
+        "description": "Have fun friends!",
+        "core": "Mohist"
     }
 }
