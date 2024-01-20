@@ -16,3 +16,11 @@ class Config:
     def getConfigFileContent(self, configKey):
         # self.log.printinfo(f"Giving config key {configKey}")
         return self.__configFileContent[configKey]
+    
+    def setConfigFileContent(self, configKey, configValue):
+        if configKey in self.__configFileContent.keys():
+            self.__configFileContent[configKey] = configValue
+            with open(self.configFileLocation, 'w') as configFile:
+                json.dump(self.__configFileContent, configFile)
+            return True
+        return False

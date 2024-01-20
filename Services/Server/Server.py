@@ -15,6 +15,8 @@ SERVER_INTO = {
     "port": __config.getConfigFileContent("server")["port"],
     "address": __config.getConfigFileContent("server")["address"],
     "core": __config.getConfigFileContent("server")["core"],
+    "minMem": __config.getConfigFileContent("server")["minMem"],
+    "maxMem": __config.getConfigFileContent("server")["maxMem"],
 }
 
 def getServerInfo(key):
@@ -22,3 +24,10 @@ def getServerInfo(key):
 
 def getFullServerInfo():
     return SERVER_INTO
+
+def setServerInfo(key, value):
+    if key in SERVER_INTO.keys():
+        SERVER_INTO[key] = value
+        __config.setConfigFileContent("server", SERVER_INTO)
+        return True
+    return False

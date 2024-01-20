@@ -2,12 +2,12 @@
     "minecraft_server_location": "C:\\Users\\ilove\\Documents\\testMCServer",
     "port": 8808,
     "server": {
-        "minMem": "3G",
-        "maxMem": "3G",
-        "address": "",
-        "port": 25565,
         "name": "FLTM Creative Server",
-        "description": "Have fun friends!",
-        "core": "Mohist"
+        "description": "This is the test description",
+        "port": 25565,
+        "address": "fltm.createServer.mc",
+        "core": "Mohist",
+        "minMem": "3G",
+        "maxMem": "3G"
     }
 }
